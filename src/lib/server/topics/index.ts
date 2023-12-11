@@ -12,7 +12,8 @@ function topicDate(fileName: string) {
   }
 
   // this shouldn't really ever happen since we generate the metadata.json file
-  // automatically, but it's possible in local dev for the file to be missing.
+  // automatically, but it's possible in local dev for the file to be missing or
+  // have gone stale.
   throw new Error('Topic metadata not found: ' + fileName)
 }
 
@@ -37,5 +38,5 @@ export const topics = orderBy(
     ),
   ),
   'date',
-  'asc',
+  'desc',
 )
