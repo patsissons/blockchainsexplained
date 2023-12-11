@@ -15,7 +15,8 @@
       <a
         class="mx-0.5 text-cyan-700 hover:text-cyan-600 focus:ring ring-cyan-700/25 outline-none rounded font-medium"
         href="https://github.com/patsissons/blockchainsexplained"
-        >open source project on GitHub</a
+        rel="noopener noreferrer"
+        target="_blank">open source project on GitHub</a
       >
       aimed to inform without bias on all aspects of blockchains.
     </p>
