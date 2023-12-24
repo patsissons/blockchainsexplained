@@ -19,6 +19,7 @@
 
 <div class="rounded-xl bg-white shadow-lg w-full" {...$root}>
   {#each topics as topic, i}
+    {@const isDraft = topic.metadata.draft}
     <div
       class="overflow-hidden transition-colors first:rounded-t-xl last:rounded-b-xl"
       use:melt={$item(topic.slug)}
@@ -28,24 +29,40 @@
           use:melt={$trigger(topic.slug)}
           class="flex-1 flex items-center justify-between gap-2 p-5 font-medium leading-none transition-colors hover:bg-neutral-100 outline-none focus:text-cyan-700 border-t-neutral-300"
           class:border-t={i > 0}
+          class:topic-draft={isDraft}
         >
-          <span class="text-left">
+          <span
+            class="text-left"
+            class:bg-white={isDraft}
+            class:bg-opacity-50={isDraft}
+          >
             {topic.metadata.title}
           </span>
-          <span class="text-right">
+          <span
+            class="text-right"
+            class:bg-white={isDraft}
+            class:bg-opacity-50={isDraft}
+          >
             {format(new Date(topic.date), 'PP')}
           </span>
         </button>
       </h2>
       {#if $isSelected(topic.slug)}
         <div
-          class="overflow-hidden bg-neutral-100 text-sm text-neutral-600 shadow-[inset_0px_1px_0px_theme('colors.neutral.300')]"
+          class="overflow-hidden text-sm text-neutral-600 shadow-[inset_0px_1px_0px_theme('colors.neutral.300')]"
+          class:bg-neutral-100={!isDraft}
+          class:topic-draft={isDraft}
           use:melt={$content(topic.slug)}
           transition:slide
         >
           <div class="bg-neutral-300/50 px-5 py-1 border-y border-neutral-300">
             <p class="text-center">
-              Is this topic incorrect or incomplete? Please <Link
+              {#if isDraft}
+                This is a <strong>draft</strong> topic and is not yet complete.
+              {:else}
+                Is this topic incorrect or incomplete?
+              {/if}
+              Please <Link
                 href="https://github.com/patsissons/blockchainsexplained/issues/new?assignees=&labels=improvement&projects=&template=topic-improvement.md&title=Improvement%3A+{topic.slug}"
                 external>open an issue</Link
               > with your suggestions.
@@ -59,3 +76,20 @@
     </div>
   {/each}
 </div>
+
+<style>
+  .topic-draft {
+    --pattern-color: #9ca3af40;
+    --pattern-bg-color: transparent;
+    --pattern-size: 2rem;
+
+    background-color: var(--pattern-bg-color);
+    background-image: repeating-linear-gradient(
+      /* 71 makes things kind of line up nicely */ 71deg,
+      var(--pattern-color),
+      var(--pattern-color) calc(var(--pattern-size) * 0.2),
+      var(--pattern-bg-color) calc(var(--pattern-size) * 0.2),
+      var(--pattern-bg-color) var(--pattern-size)
+    );
+  }
+</style>
