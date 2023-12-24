@@ -43,16 +43,16 @@
           use:melt={$content(topic.slug)}
           transition:slide
         >
-          <div class="px-5 py-4">
-            <TopicItem {topic} />
-          </div>
-          <div class="bg-neutral-300 px-5 py-2 border-t border-neutral-400">
+          <div class="bg-neutral-300/50 px-5 py-1 border-y border-neutral-300">
             <p class="text-center">
               Is this topic incorrect or incomplete? Please <Link
                 href="https://github.com/patsissons/blockchainsexplained/issues/new?assignees=&labels=improvement&projects=&template=topic-improvement.md&title=Improvement%3A+{topic.slug}"
                 external>open an issue</Link
               > with your suggestions.
             </p>
+          </div>
+          <div class="px-5 py-4">
+            <TopicItem {topic} />
           </div>
         </div>
       {/if}
