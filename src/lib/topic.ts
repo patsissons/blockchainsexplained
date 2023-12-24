@@ -18,16 +18,19 @@ export function validateMetadata(metadata: unknown): TopicMetadata {
     throw new TopicMetadataError(metadata)
   }
 
-  const { title, labels } = metadata as Record<string, unknown>
+  const { title, labels, draft } = metadata as Record<string, unknown>
 
   if (!title || typeof title !== 'string')
     throw new TopicMetadataError(title, 'title')
   if (!validateLabelsMetadata(labels))
     throw new TopicMetadataError(labels, 'labels')
+  if (draft !== undefined && typeof draft !== 'boolean')
+    throw new TopicMetadataError(draft, 'draft')
 
   const result: TopicMetadata = {
     title,
     labels,
+    draft,
   }
 
   return omitBy(result, isNil) as TopicMetadata

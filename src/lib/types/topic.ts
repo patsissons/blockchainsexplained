@@ -1,6 +1,7 @@
 export interface TopicMetadata {
   title: string
   labels?: string[]
+  draft?: boolean
 }
 
 export interface Topic {

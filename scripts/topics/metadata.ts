@@ -19,7 +19,7 @@ console.log(
               )}`,
             )
               .toString()
-              .trim(),
+              .trim() || new Date().toISOString(),
           ).toISOString(),
         ]),
     ),

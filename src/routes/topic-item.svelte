@@ -54,6 +54,10 @@
     @apply bg-neutral-100;
   }
 
+  :global(.topic-draft) .markdown-body {
+    @apply bg-transparent;
+  }
+
   .markdown-body :global(pre) {
     @apply bg-neutral-900 text-neutral-200;
   }
