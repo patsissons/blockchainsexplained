@@ -4,7 +4,14 @@
 </script>
 
 <div class="flex flex-col gap-2 min-h-screen">
-  <header></header>
+  <header class="bg-neutral-300 text-center px-2 py-0.5">
+    <p>
+      Have an idea for a topic? Please <Link
+        href="https://github.com/patsissons/blockchainsexplained/issues/new?assignees=&labels=new-topic&projects=&template=new-topic-suggestion.md&title=Topic%3A+topic_title"
+        external>open an issue</Link
+      > with your suggestion.
+    </p>
+  </header>
 
   <main class="flex-1 flex px-2">
     <slot />
