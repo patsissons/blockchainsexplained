@@ -39,7 +39,7 @@
             {topic.metadata.title}
           </span>
           <span
-            class="text-right"
+            class="text-right whitespace-nowrap"
             class:bg-white={isDraft}
             class:bg-opacity-50={isDraft}
           >
