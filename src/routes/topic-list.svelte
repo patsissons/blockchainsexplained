@@ -4,6 +4,7 @@
   import { slide } from 'svelte/transition'
   import { page } from '$app/stores'
   import type { Topic } from '$lib/types/topic'
+  import Link from './link.svelte'
   import TopicItem from './topic-item.svelte'
 
   export let topics: Topic[]
@@ -44,6 +45,14 @@
         >
           <div class="px-5 py-4">
             <TopicItem {topic} />
+          </div>
+          <div class="bg-neutral-300 px-5 py-2 border-t border-neutral-400">
+            <p class="text-center">
+              Is this topic incorrect or incomplete? Please <Link
+                href="https://github.com/patsissons/blockchainsexplained/issues/new?assignees=&labels=improvement&projects=&template=topic-improvement.md&title=Improvement%3A+{topic.slug}"
+                external>open an issue</Link
+              > with your suggestions.
+            </p>
           </div>
         </div>
       {/if}
