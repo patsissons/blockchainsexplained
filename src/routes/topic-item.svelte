@@ -2,7 +2,6 @@
   import hljs from 'highlight.js'
   import DOMPurify from 'isomorphic-dompurify'
   import { marked } from 'marked'
-  import LinkIcon from 'svelte-ionicons/Link.svelte'
   import type { Topic } from '$lib/types/topic'
 
   import 'github-markdown-css/github-markdown-light.css'
@@ -39,9 +38,6 @@
         </ul>
       {/if}
     </div>
-    <a class="hover:text-black" href="#{topic.slug}">
-      <LinkIcon class="outline-none" />
-    </a>
   </div>
   <div class="markdown-body overflow-x-auto">
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
