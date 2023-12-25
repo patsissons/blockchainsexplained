@@ -31,17 +31,12 @@
           class:border-t={i > 0}
           class:topic-draft={isDraft}
         >
-          <span
-            class="text-left"
-            class:bg-white={isDraft}
-            class:bg-opacity-50={isDraft}
-          >
+          <span class="text-left" class:text-neutral-300={isDraft}>
             {topic.metadata.title}
           </span>
           <span
             class="text-right whitespace-nowrap"
-            class:bg-white={isDraft}
-            class:bg-opacity-50={isDraft}
+            class:text-neutral-500={isDraft}
           >
             {format(new Date(topic.date), 'PP')}
           </span>
@@ -79,17 +74,6 @@
 
 <style>
   .topic-draft {
-    --pattern-color: #9ca3af40;
-    --pattern-bg-color: transparent;
-    --pattern-size: 2rem;
-
-    background-color: var(--pattern-bg-color);
-    background-image: repeating-linear-gradient(
-      /* 71 makes things kind of line up nicely */ 71deg,
-      var(--pattern-color),
-      var(--pattern-color) calc(var(--pattern-size) * 0.2),
-      var(--pattern-bg-color) calc(var(--pattern-size) * 0.2),
-      var(--pattern-bg-color) var(--pattern-size)
-    );
+    @apply bg-gradient-to-r from-neutral-500 to-neutral-950/20;
   }
 </style>
