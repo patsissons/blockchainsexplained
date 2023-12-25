@@ -25,11 +25,12 @@
       use:melt={$item(topic.slug)}
     >
       <h2 class="flex">
-        <button
+        <a
           use:melt={$trigger(topic.slug)}
           class="flex-1 flex items-center justify-between gap-2 p-5 font-medium leading-none transition-colors hover:bg-neutral-100 outline-none focus:text-cyan-700 border-t-neutral-300"
           class:border-t={i > 0}
           class:topic-draft={isDraft}
+          href="#{topic.slug}"
         >
           <span class="text-left" class:text-neutral-300={isDraft}>
             {topic.metadata.title}
@@ -40,7 +41,7 @@
           >
             {format(new Date(topic.date), 'PP')}
           </span>
-        </button>
+        </a>
       </h2>
       {#if $isSelected(topic.slug)}
         <div
