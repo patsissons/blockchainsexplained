@@ -3,7 +3,7 @@
 html {
   text-rendering: optimizelegibility;
 
-  @apply bg-neutral-500 text-black antialiased;
+  @apply bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-neutral-950 to-neutral-500/50 text-black antialiased;
 }
 
 body {
