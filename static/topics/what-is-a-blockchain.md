@@ -15,13 +15,17 @@ Imagine you have a notebook that you use to keep track of the video games that y
 
 Without a blockchain, storing data in a data storage system (e.g., the database of a bank) requires that you trust the owner of the system to not tamper with the data. This is because the owner of the system can change the data in the system at any time since they own and operate that data storage system. A blockchain is a publicly visible data storage system that is designed to prevent tampering of the data by replicating the data across a large number of connected computers and using a special data validation technique to verify the data in one computer matches the data in all other computers such that tampering becomes immediately apparent. This means that the data in the blockchain does not need to be trusted for accuracy by any one computer and instead can be independently verified for accuracy by anyone through running the special data validation technique themselves.
 
+<!--
 ## As an intermediate
 
 _tbd_
+-->
 
+<!--
 ## As an expert
 
 _tbd_
+ -->
 
 ## How is it tamperproof?
 
