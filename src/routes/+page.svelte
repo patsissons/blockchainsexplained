@@ -1,14 +1,22 @@
 <script lang="ts">
   import { format } from 'date-fns'
   import { page } from '$app/stores'
+  import { goto } from '$app/navigation'
+  import type { Topic } from '$lib/types/topic'
+  import { seo } from './constants'
   import TopicList from './topic-list.svelte'
   import type { PageData } from './$types'
 
   export let data: PageData
+  export let selectedTopic: Topic | undefined = undefined
 
-  $: selectedTopic = data.topics.find(
-    ({ slug }) => slug === $page.url.hash.slice(1),
-  )
+  // handle redirect from old hash routing
+  $: hash = $page.url.hash
+  $: if (hash) {
+    goto(`/${hash.slice(1)}`, { replaceState: true, noScroll: true }).catch(
+      console.error,
+    )
+  }
 </script>
 
 <svelte:head>
@@ -16,24 +24,35 @@
     {@const {
       date,
       slug,
-      metadata: { title, draft, labels },
+      metadata,
+      metadata: { draft, labels },
     } = selectedTopic}
-    <title>Blockchains Explained - {title}</title>
+    {@const title = [seo.title, metadata.title].join(' - ')}
+    {@const description = `${draft ? 'Drafted' : 'Published'} ${format(
+      new Date(date),
+      'PP',
+    )} [${labels?.join(', ') || slug}]`}
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <meta
-      name="description"
-      content={`${draft ? 'Drafted' : 'Published'} ${format(
-        new Date(date),
-        'PP',
-      )} [${labels?.join(', ') || slug}]`}
+      property="og:url"
+      content={new URL(selectedTopic.slug, seo.url).href}
     />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
   {:else}
-    <meta
-      name="description"
-      content="A simple FAQ site aimed to inform without bias on all aspects of blockchains."
-    />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta property="og:url" content={seo.url} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
   {/if}
+
+  <meta property="og:site_name" content={seo.title} />
 </svelte:head>
 
-<div class="flex-1 container mx-auto flex flex-col items-center justify-center">
-  <TopicList topics={data.topics} />
-</div>
+<TopicList topics={data.topics} slug={selectedTopic?.slug} />
