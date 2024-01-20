@@ -14,7 +14,11 @@
   </header>
 
   <main class="flex-1 flex px-2">
-    <slot />
+    <div
+      class="flex-1 container mx-auto flex flex-col items-center justify-center"
+    >
+      <slot />
+    </div>
   </main>
 
   <footer class="bg-neutral-300 text-center px-2 py-0.5">

@@ -3,9 +3,9 @@
 html {
   text-rendering: optimizelegibility;
 
-  @apply bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-neutral-950 to-neutral-500/50 text-black antialiased;
+  @apply bg-neutral-300 text-black antialiased;
 }
 
 body {
-  @apply min-h-screen min-w-[320px];
+  @apply min-h-screen min-w-[320px] bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-neutral-950 to-neutral-500/50;
 }
