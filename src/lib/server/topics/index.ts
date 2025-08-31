@@ -22,7 +22,8 @@ export const topics = orderBy(
     mapKeys(
       mapValues(
         import.meta.glob('../../../../static/topics/*.md', {
-          as: 'raw',
+          query: '?raw',
+          import: 'default',
           eager: true,
         }),
         (markdown, path) => {
@@ -30,7 +31,7 @@ export const topics = orderBy(
           return {
             slug: fileName.slice(0, -'.md'.length),
             date: topicDate(fileName),
-            ...parseTopicMarkdown(markdown),
+            ...parseTopicMarkdown(markdown as string),
           } as Topic
         },
       ),
