@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<style>
+<style lang="postcss">
   .markdown-body {
     @apply bg-neutral-100;
   }

@@ -3,6 +3,7 @@
   import { format } from 'date-fns'
   import { onMount } from 'svelte'
   import { slide } from 'svelte/transition'
+  import { pushState } from '$app/navigation'
   import type { Topic } from '$lib/types/topic'
   import Link from './link.svelte'
   import TopicItem from './topic-item.svelte'
@@ -72,11 +73,7 @@
           class:topic-draft={isDraft}
           href="/{topic.slug}"
           on:click|preventDefault={(e) => {
-            window.history.pushState(
-              null,
-              '',
-              selected ? `/${topic.slug}` : '/',
-            )
+            pushState(selected ? `/${topic.slug}` : '/', {})
 
             scrollIntoView(e.currentTarget).catch(console.error)
           }}
@@ -122,7 +119,7 @@
   {/each}
 </div>
 
-<style>
+<style lang="postcss">
   .topic-draft {
     @apply bg-gradient-to-r from-neutral-500 to-neutral-950/20;
   }
